@@ -1,0 +1,11 @@
+L:\DevelopmentNugetPackages\ELMapper.NET\bin\Release\net8.0\ELMapper.NET.deps.json
+L:\DevelopmentNugetPackages\ELMapper.NET\bin\Release\net8.0\ELMapper.NET.dll
+L:\DevelopmentNugetPackages\ELMapper.NET\bin\Release\net8.0\ELMapper.NET.pdb
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.GeneratedMSBuildEditorConfig.editorconfig
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.AssemblyInfoInputs.cache
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.AssemblyInfo.cs
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.csproj.CoreCompileInputs.cache
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.dll
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\refint\ELMapper.NET.dll
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.pdb
+L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ref\ELMapper.NET.dll
