@@ -27,7 +27,7 @@ The method's return type is the destination type as shown above, with the except
  
  /* assumption that here we already have the property values ​​of the BankEmployeeVM class set, but that these properties are not on the source, so that we do not lose the property values ​​that are on the objects of the BankEmployeeVM class. */
    
-   ***context.BankEmployees.ToList().MapIEnumerable<BankEmployee, BankEmployeeVM>(destList);***
+   ***```context.BankEmployees.ToList().MapIEnumerable<BankEmployee, BankEmployeeVM>(destList);```***
 
 ### Mapping object to object without passing an optional parameter
 
