@@ -12,7 +12,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "8.0.1",
+    "version": "8.0.2",
     "restore": {
       "projectUniqueName": "L:\\DevelopmentNugetPackages\\ELMapper.NET\\ELMapper.NET.csproj",
       "projectName": "ELMapper.NET",
@@ -33,7 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "L:\\DevelopmentNugetPackages\\LocalOfflineNugetPackages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

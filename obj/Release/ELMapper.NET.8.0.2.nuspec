@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>ELMapper.NET</id>
-    <version>8.0.1</version>
+    <version>8.0.2</version>
     <title>ELMapper.NET - the solution for automatic mapping of objects and collections.</title>
     <authors>Elvis Hodzic</authors>
     <license type="expression">MIT</license>

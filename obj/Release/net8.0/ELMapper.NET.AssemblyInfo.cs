@@ -14,47 +14,17 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Elvis Hodzic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("2026, Elvis Hodzic, e-mail: elvish91@hotmail.com")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute("ELMapper.NET - a solution for automatic mapping of objects and collections. It is" +
-    " necessary to define at least some properties from the source class to the desti" +
-    "nation with the same names in the source class. The Mapper works in two ways (ob" +
-    "ject-to-object mapping and collection-to-collection mapping) using four methods " +
-    "that work in asynchronous and synchronous modes.\r\nThese are the generic extensio" +
-    "n methods used (the suffix Async is for asynchronous methods):\r\n1. MapObjectAsyn" +
-    "c<T_Source, T_Destination>(T_Destination? objTo = null)\r\n2. MapObject<T_Source, " +
-    "T_Destination>(T_Destination? objTo = null)\r\n3. Task<IEnumerable<T_Destination>>" +
-    "\r\nMapIEnumerableAsync<T_Source, T_Destination>(List<T_Destination>? listTo=null)" +
-    "\r\n4. IEnumerable<T_Destination> MapIEnumerable<T_Source, T_Destination>(List<T_D" +
-    "estination>? listTo = null)\r\n\r\nSince the methods are extension methods, the sour" +
-    "ce is the object from which we call the method itself, and it is also important " +
-    "to specify the types for the source and destination as in the method signatures " +
-    "above.\r\nEach method has an optional parameter to which we pass an object or a ge" +
-    "neric list (often the case is that we have a ViewModel object with properties th" +
-    "at have already set values).\r\nThe method\'s return type is the destination type a" +
-    "s shown above, with the exception that for generic collections the return type i" +
-    "s IEnumerable.\r\n\r\nBelow are examples of calling asynchronous methods from the co" +
-    "ntroller action where the source is BankEmployee and the destination is BankEmpl" +
-    "oyeeVM:\r\n\r\n1. Mapping collections without passing an optional parameter: \r\n   \r\n" +
-    "   await context.BankEmployees.ToList().MapIEnumerableAsync<BankEmployee, BankEm" +
-    "ployeeVM>();\r\n\r\n2. Collection mapping with optional parameter passing\r\n   List<B" +
-    "ankEmployeeVM> destList /*assumption that here we already have the property valu" +
-    "es ​​of the BankEmployeeVM class set, but that these properties are not on the s" +
-    "ource, so that we do not lose the property values ​​that are on the objects of t" +
-    "he BankEmployeeVM class*/\r\n    context.BankEmployees.ToList().MapIEnumerable<Ban" +
-    "kEmployee, BankEmployeeVM>(destList);\r\n\r\n3. Mapping object to object without pas" +
-    "sing an optional parameter:\r\n\r\n   await context.BankEmployees.Where(x=>x.Id==id)" +
-    ".FirstAsync().Result.MapObjectAsync<BankEmployee,BankEmployeeVM>()\r\n\r\n\r\n4. Objec" +
-    "t-to-object mapping with optional parameter passing:\r\n   BankEmployeeVM destObj " +
-    "/*assumption that here we already have set property values ​​of the BankEmployee" +
-    "VM class and that those properties are not located on the source so that we do n" +
-    "ot lose the property values ​​that are on the objects of the BankEmployeeVM clas" +
-    "s*/\r\n  await context.BankEmployees.Where(x=>x.Id==id).FirstAsync().Result.MapObj" +
-    "ectAsync<BankEmployee,BankEmployeeVM>(destObj)\r\n\r\n5. In addition to asynchronous" +
-    " methods, we also have synchronous ones, so we will give one example of object-t" +
-    "o-object mapping (all synchronous methods are called in the same way - without t" +
-    "he suffix Async as stated above in signatures):\r\ncontext.BankEmployees.Where(x=>" +
-    "x.Id==id).First().MapObject<BankEmployee,BankEmployeeVM>();")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute(@"ELMapper.NET - the solution for automatic mapping of objects and collections. It is necessary to define at least some properties from the source class to the destination with the same names in the source class. The Mapper works in two ways (object-to-object mapping and collection-to-collection mapping) using that work in asynchronous and synchronous modes.
+
+These are the generic extension methods used (the suffix Async is for asynchronous methods):
+
+- Task<T_Destination> MapObjectAsync<T_Source, T_Destination>(this T_Source objFrom, T_Destination? objTo=null)
+- T_Destination MapObject<T_Source, T_Destination>(this T_Source objFrom, T_Destination? objTo = null)
+- Task<IEnumerable<T_Destination>> MapIEnumerableAsync<T_Source, T_Destination>(this IEnumerable<T_Source> enumerableFrom, List<T_Destination>? listTo=null)
+- IEnumerable<T_Destination> MapIEnumerable<T_Source, T_Destination>(this IEnumerable<T_Source> enumerableFrom, List<T_Destination>? listTo = null)
+")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("8.0.0.1")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("8.0.1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("8.0.2")]
 [assembly: System.Reflection.AssemblyProductAttribute("ELMapper.NET")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ELMapper.NET")]
 [assembly: System.Reflection.AssemblyVersionAttribute("8.0.0.1")]
