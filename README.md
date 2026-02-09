@@ -43,5 +43,5 @@ The method's return type is the destination type as shown above, with the except
 
 ### In addition to asynchronous methods, we also have synchronous ones, so we will give one example of object-to-object mapping (all synchronous methods are called in the same way - without the suffix Async as stated above in signatures)
 
-***```context.BankEmployees.Where(x=>x.Id==id).First().MapObject<BankEmployee,BankEmployeeVM>();```***
+***```context.BankEmployees.Where(x=>x.Id==id).First().MapObject<BankEmployee,BankEmployeeVM>();```*** 
 
