@@ -2,50 +2,55 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>ELMapper.NET - the solution for automatic mapping of objects and collections. </Title>
+
+    <!-- IMPORTANT: manual pack (avoids cache/snapshot issues) -->
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+
+    <Title>ELMapper.NET - the solution for automatic mapping of objects and collections.</Title>
+
     <Authors>Elvis Hodzic</Authors>
+
     <Description>Lightweight .NET object mapper for object-to-object and collection mapping with case-insensitive property matching and runtime validation. No silent mapping behavior.</Description>
+
     <PackageIcon>ELMapperNET.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+
     <PackageTags>mapper;dotnet;object-mapper;mapping;reflection;dto;object-mapping</PackageTags>
+
     <Copyright>Copyright (c) 2026 Elvis Hodzic</Copyright>
-    <AssemblyVersion>8.0.1.1</AssemblyVersion>
-    <FileVersion>8.0.1.1</FileVersion>
-    <Version>8.1.0</Version>
+
+    <!-- Version alignment (IMPORTANT for clean NuGet release) -->
+    <Version>8.1.1</Version>
+    <AssemblyVersion>8.1.1.0</AssemblyVersion>
+    <FileVersion>8.1.1.0</FileVersion>
+
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
     <RepositoryUrl>https://github.com/elvish91/ELMapper.NET</RepositoryUrl>
     <PackageProjectUrl>https://github.com/elvish91/ELMapper.NET</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>- Improved case-insensitive property mapping consistency
+
+    <PackageReleaseNotes>
+- Improved case-insensitive property mapping consistency
 - Enhanced Ignore validation with fail-fast behavior
 - Added strict validation for invalid or empty ignore properties
 - Improved mapping stability and internal resolution logic
-- No breaking changes</PackageReleaseNotes>
+- No breaking changes
+    </PackageReleaseNotes>
+
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>False</Optimize>
-  </PropertyGroup>
-
+  <!-- Image included cleanly in NuGet package -->
   <ItemGroup>
-    <EmbeddedResource Include="image\ELMapperNET.jpg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </EmbeddedResource>
+    <None Include="image\ELMapperNET.jpg" Pack="true" PackagePath="" />
   </ItemGroup>
 
+  <!-- README included cleanly -->
   <ItemGroup>
-    <None Update="image\ELMapperNET.jpg">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
