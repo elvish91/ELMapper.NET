@@ -9,3 +9,15 @@ L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.dll
 L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\refint\ELMapper.NET.dll
 L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.pdb
 L:\DevelopmentNugetPackages\ELMapper.NET\obj\Release\net8.0\ref\ELMapper.NET.dll
+L:\GitRoot\ELMapper.NET\bin\Release\net8.0\ELMapper.NET.deps.json
+L:\GitRoot\ELMapper.NET\bin\Release\net8.0\ELMapper.NET.dll
+L:\GitRoot\ELMapper.NET\bin\Release\net8.0\ELMapper.NET.pdb
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.GeneratedMSBuildEditorConfig.editorconfig
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.AssemblyInfoInputs.cache
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.AssemblyInfo.cs
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.csproj.CoreCompileInputs.cache
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.sourcelink.json
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.dll
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\refint\ELMapper.NET.dll
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ELMapper.NET.pdb
+L:\GitRoot\ELMapper.NET\obj\Release\net8.0\ref\ELMapper.NET.dll

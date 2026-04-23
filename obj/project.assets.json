@@ -12,13 +12,13 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "8.0.2",
+    "version": "8.1.0",
     "restore": {
-      "projectUniqueName": "L:\\DevelopmentNugetPackages\\ELMapper.NET\\ELMapper.NET.csproj",
+      "projectUniqueName": "L:\\GitRoot\\ELMapper.NET\\ELMapper.NET.csproj",
       "projectName": "ELMapper.NET",
-      "projectPath": "L:\\DevelopmentNugetPackages\\ELMapper.NET\\ELMapper.NET.csproj",
+      "projectPath": "L:\\GitRoot\\ELMapper.NET\\ELMapper.NET.csproj",
       "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-      "outputPath": "L:\\DevelopmentNugetPackages\\ELMapper.NET\\obj\\",
+      "outputPath": "L:\\GitRoot\\ELMapper.NET\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

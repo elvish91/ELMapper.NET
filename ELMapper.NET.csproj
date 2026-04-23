@@ -7,23 +7,23 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>ELMapper.NET - the solution for automatic mapping of objects and collections. </Title>
     <Authors>Elvis Hodzic</Authors>
-    <Description>ELMapper.NET - the solution for automatic mapping of objects and collections. It is necessary to define at least some properties from the source class to the destination with the same names in the source class. The Mapper works in two ways (object-to-object mapping and collection-to-collection mapping) using that work in asynchronous and synchronous modes.
-
-These are the generic extension methods used (the suffix Async is for asynchronous methods):
-
-- Task&lt;T_Destination&gt; MapObjectAsync&lt;T_Source, T_Destination&gt;(this T_Source objFrom, T_Destination? objTo=null)
-- T_Destination MapObject&lt;T_Source, T_Destination&gt;(this T_Source objFrom, T_Destination? objTo = null)
-- Task&lt;IEnumerable&lt;T_Destination&gt;&gt; MapIEnumerableAsync&lt;T_Source, T_Destination&gt;(this IEnumerable&lt;T_Source&gt; enumerableFrom, List&lt;T_Destination&gt;? listTo=null)
-- IEnumerable&lt;T_Destination&gt; MapIEnumerable&lt;T_Source, T_Destination&gt;(this IEnumerable&lt;T_Source&gt; enumerableFrom, List&lt;T_Destination&gt;? listTo = null)
-</Description>
+    <Description>Lightweight .NET object mapper for object-to-object and collection mapping with case-insensitive property matching and runtime validation. No silent mapping behavior.</Description>
     <PackageIcon>ELMapperNET.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>binding;mapping;dotnet;asp.net;dotnetcore</PackageTags>
-    <Copyright>2026, Elvis Hodzic, e-mail: elvish91@hotmail.com</Copyright>
-    <AssemblyVersion>8.0.0.1</AssemblyVersion>
-    <FileVersion>8.0.0.1</FileVersion>
-    <Version>8.0.2</Version>
+    <PackageTags>mapper;dotnet;object-mapper;mapping;reflection;dto;object-mapping</PackageTags>
+    <Copyright>Copyright (c) 2026 Elvis Hodzic</Copyright>
+    <AssemblyVersion>8.0.1.1</AssemblyVersion>
+    <FileVersion>8.0.1.1</FileVersion>
+    <Version>8.1.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/elvish91/ELMapper.NET</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/elvish91/ELMapper.NET</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>- Improved case-insensitive property mapping consistency
+- Enhanced Ignore validation with fail-fast behavior
+- Added strict validation for invalid or empty ignore properties
+- Improved mapping stability and internal resolution logic
+- No breaking changes</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
