@@ -75,4 +75,4 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 🔗 Repository
 
-https://github.com/YOUR_USERNAME/ELMapper.NET
+https://github.com/elvish91/ELMapper.NET
