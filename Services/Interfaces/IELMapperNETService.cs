@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ELMapper.NET.Contracts
+namespace ELMapper.NET.Services.Interfaces
 {
-    public interface IELMapperNET
+    internal interface IELMapperNETService
     {
         Task<T_Destination> MapObjectAsync<T_Source, T_Destination>(T_Source objFrom, T_Destination? objTo = null, MappingOptions? mappingOptions = null)
         where T_Source : class where T_Destination : class, new();

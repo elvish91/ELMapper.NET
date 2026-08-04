@@ -13,19 +13,19 @@
 
     <Authors>Elvis Hodzic</Authors>
 
-    <Description>Lightweight .NET object mapper for object-to-object and collection mapping with case-insensitive property matching and runtime validation. No silent mapping behavior.</Description>
+    <Description>Lightweight .NET object mapper for object-to-object and collection mapping with case-insensitive property matching and runtime validation. No silent mapping behavior. Supports Dependency Injection.</Description>
 
     <PackageIcon>ELMapperNET.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
-    <PackageTags>mapper;dotnet;object-mapper;mapping;reflection;dto;object-mapping</PackageTags>
+    <PackageTags>mapper;dotnet;object-mapper;mapping;reflection;dto;object-mapping;dependency-injection;dotnet-library</PackageTags>
 
     <Copyright>Copyright (c) 2026 Elvis Hodzic</Copyright>
 
     <!-- Version alignment (IMPORTANT for clean NuGet release) -->
-    <Version>8.1.1</Version>
-    <AssemblyVersion>8.1.1.0</AssemblyVersion>
-    <FileVersion>8.1.1.0</FileVersion>
+    <Version>9.0.0</Version>
+    <AssemblyVersion>9.0.0.0</AssemblyVersion>
+    <FileVersion>9.0.0.0</FileVersion>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
@@ -33,13 +33,16 @@
     <PackageProjectUrl>https://github.com/elvish91/ELMapper.NET</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
 
-    <PackageReleaseNotes>
+    <PackageReleaseNotes>Version 9.0.0 introduces:
+
+- Added Dependency Injection support through AddELMapper()
+- Added built-in sensitive data masking during object and collection mapping
 - Improved case-insensitive property mapping consistency
 - Enhanced Ignore validation with fail-fast behavior
 - Added strict validation for invalid or empty ignore properties
 - Improved mapping stability and internal resolution logic
-- No breaking changes
-    </PackageReleaseNotes>
+- Maintained backward compatibility with extension method based usage
+- No breaking changes</PackageReleaseNotes>
 
   </PropertyGroup>
 
@@ -51,6 +54,10 @@
   <!-- README included cleanly -->
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

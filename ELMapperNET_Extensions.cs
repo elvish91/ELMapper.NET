@@ -1,19 +1,19 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-using ELMapper.NET.BusinessLogic;
-using ELMapper.NET.Contracts;
+using ELMapper.NET.Services.Interfaces;
+using ELMapper.NET.Services.Implementations;
 
 namespace ELMapper.NET
 {  
-        public static class ELMapperNET
+        public static class ELMapperNET_Extensions
         {
        
         public static async Task<T_Destination> MapObjectAsync<T_Source, T_Destination>(this T_Source objFrom, T_Destination? objTo=null
             , MappingOptions? mappingOptions = null)
         where T_Source : class where T_Destination : class, new()
         {
-            
-            IELMapperNET _IELMapperNET = new ELMapperBL();
+
+            IELMapperNETService _IELMapperNET = new ELMapperNETService();
             return await _IELMapperNET.MapObjectAsync(objFrom, objTo, mappingOptions);
             
             
@@ -22,7 +22,7 @@ namespace ELMapper.NET
             , MappingOptions? mappingOptions = null)
          where T_Source : class where T_Destination : class, new()
         {
-            IELMapperNET _IELMapperNET = new ELMapperBL();
+            IELMapperNETService _IELMapperNET = new ELMapperNETService();
             return _IELMapperNET.MapObject(objFrom, objTo,mappingOptions);
             
         }
@@ -31,7 +31,7 @@ namespace ELMapper.NET
             where T_Source : class where T_Destination : class, new()
         {
 
-            IELMapperNET _IELMapperNET = new ELMapperBL();
+            IELMapperNETService _IELMapperNET = new ELMapperNETService();
             return await _IELMapperNET.MapIEnumerableAsync(enumerableFrom, listTo,mappingOptions);
             
 
@@ -41,7 +41,7 @@ namespace ELMapper.NET
             , MappingOptions? mappingOptions = null)
             where T_Source : class where T_Destination : class, new()
         {
-            IELMapperNET _IELMapperNET = new ELMapperBL();
+            IELMapperNETService _IELMapperNET = new ELMapperNETService();
             return _IELMapperNET.MapIEnumerable(enumerableFrom, listTo,mappingOptions);
             
         }

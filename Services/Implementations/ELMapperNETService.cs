@@ -1,4 +1,5 @@
-﻿using ELMapper.NET.Contracts;
+﻿using ELMapper.NET.Helpers;
+using ELMapper.NET.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,57 +7,12 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static ELMapper.NET.HelperFunctions;
 
-namespace ELMapper.NET.BusinessLogic
+namespace ELMapper.NET.Services.Implementations
 {
-    internal class ELMapperBL : IELMapperNET
+    internal class ELMapperNETService : IELMapperNETService
     {
-
-
-
-        private List<string> ExcludePropertiesFromSource( MappingOptions? options, PropertyInfo[] sourceProps)
-        {
-            var ignore = options?.Ignore ?? new List<string>();
-
-            
-            var comparer = StringComparer.OrdinalIgnoreCase;
-
-            var sourceNames = sourceProps
-                .Select(p => p.Name)
-                .ToHashSet(comparer);
-
-            var ignoreSet = new HashSet<string>(ignore, comparer);
-
-           
-            foreach (var prop in ignoreSet)
-            {
-                if (string.IsNullOrWhiteSpace(prop))
-                    throw new ArgumentException("Ignore property name cannot be null or empty.");
-
-                if (!sourceNames.Contains(prop))
-                {
-                    throw new InvalidOperationException(
-                        $"Ignore property '{prop}' does not exist in source.");
-                }
-            }
-
-            return ignoreSet.ToList();
-        }
-
-        private IEnumerable<(PropertyInfo From, PropertyInfo To) > BuildMappingQuery(PropertyInfo[] sourceProps,PropertyInfo[] destinationProps, MappingOptions? options)
-        {
-            var ignoreList = ExcludePropertiesFromSource(options, sourceProps);
-
-            var ignore = new HashSet<string>(
-                ignoreList ?? Enumerable.Empty<string>(),
-                StringComparer.OrdinalIgnoreCase);
-
-            return from x in sourceProps
-                   from y in destinationProps
-                   where string.Equals(x.Name, y.Name, StringComparison.OrdinalIgnoreCase)
-                      && !ignore.Contains(x.Name)
-                   select (x, y);
-        }
 
         public IEnumerable<T_Destination> MapIEnumerable<T_Source, T_Destination>(IEnumerable<T_Source> enumerableFrom, List<T_Destination>? listTo = null,
             MappingOptions? mappingOptions=null)
@@ -76,11 +32,12 @@ namespace ELMapper.NET.BusinessLogic
 
 
 
-                #region query for filter (default and ignore)
-               
+                #region query for filter, masking (default and ignore)
 
-               var _query = BuildMappingQuery(arr_props_obj_From, arr_props_obj_To, mappingOptions);
+                
+                var _query = BuildMappingQuery(arr_props_obj_From, arr_props_obj_To, mappingOptions);
 
+                
 
                 foreach (T_Source obj_from in enumerableFrom)
                 {
@@ -88,14 +45,30 @@ namespace ELMapper.NET.BusinessLogic
 
                     foreach (var (fromProp, toProp) in _query)
                     {
+                       
                         if (fromProp.CanRead && toProp.CanWrite)
                         {
-                            toProp.SetValue(
+                            if (mappingOptions?.MaskingIncluded == true &&
+                                mappingOptions.Masking != null && mappingOptions.Masking.TryGetValue(toProp.Name, out var maskPattern))
+                            {
+                                string fromProp_str = fromProp.GetValue(obj_from, null)?.ToString() ?? throw new Exception($"The pattern value of property {fromProp.Name} is wrong");
+                                string fromProp_str_masked = MaskingHelper.ApplyMask(fromProp_str!, maskPattern);
+                                toProp.SetValue(
+                                obj_to,
+                                fromProp_str_masked, null);
+                            }
+                            else
+                            {
+                                toProp.SetValue(
                                 obj_to,
                                 fromProp.GetValue(obj_from, null),
                                 null);
+                            }
+
                         }
                     }
+
+                    
 
                     listTo.Add(obj_to);
                 }
@@ -133,12 +106,12 @@ namespace ELMapper.NET.BusinessLogic
                 PropertyInfo[] arr_props_obj_To = typeof(T_Destination).GetProperties();
 
 
-                #region query for filter (default and ignore)
+                #region query for filter, masking (default and ignore)
 
 
                 var _query = BuildMappingQuery(arr_props_obj_From, arr_props_obj_To, mappingOptions);
 
-
+                
 
                 foreach (T_Source obj_from in enumerableFrom)
                 {
@@ -147,17 +120,33 @@ namespace ELMapper.NET.BusinessLogic
 
                     foreach (var (fromProp, toProp) in _query)
                     {
+
                         if (fromProp.CanRead && toProp.CanWrite)
                         {
-                            toProp.SetValue(
+                            if (mappingOptions?.MaskingIncluded == true &&
+                                mappingOptions.Masking != null && mappingOptions.Masking.TryGetValue(toProp.Name, out var maskPattern))
+                            {
+                               string fromProp_str = fromProp.GetValue(obj_from, null)?.ToString() ?? throw new Exception($"The pattern value of property {fromProp.Name} is wrong");
+                               string fromProp_str_masked = MaskingHelper.ApplyMask(fromProp_str!, maskPattern);
+                                toProp.SetValue(
+                                obj_to,
+                                fromProp_str_masked, null);
+                            }
+                            else
+                            {
+                                toProp.SetValue(
                                 obj_to,
                                 fromProp.GetValue(obj_from, null),
                                 null);
+                            }
+                             
                         }
                     }
 
+
                     listTo.Add(obj_to);
                 }
+               
 
                 #endregion
 
@@ -174,16 +163,16 @@ namespace ELMapper.NET.BusinessLogic
             }
         }
 
-        public  T_Destination MapObject<T_Source, T_Destination>(T_Source objFrom, T_Destination? objTo = null
+        public  T_Destination MapObject<T_Source, T_Destination>(T_Source obj_from, T_Destination? obj_to = null
              , MappingOptions? mappingOptions = null)
             where T_Source : class
             where T_Destination : class, new()
         {
             try
             {
-                if (objTo is null)
+                if (obj_to is null)
                 {
-                    objTo = new T_Destination();
+                    obj_to = new T_Destination();
                 }
 
 
@@ -191,7 +180,7 @@ namespace ELMapper.NET.BusinessLogic
                 PropertyInfo[] arr_props_obj_From = typeof(T_Source).GetProperties();
                 PropertyInfo[] arr_props_obj_To = typeof(T_Destination).GetProperties();
 
-                #region query for filter (default and ignore)
+                #region query for filter, masking (default and ignore)
 
 
                 var _query = BuildMappingQuery(arr_props_obj_From, arr_props_obj_To, mappingOptions);
@@ -200,15 +189,28 @@ namespace ELMapper.NET.BusinessLogic
                 {
                     if (fromProp.CanRead && toProp.CanWrite)
                     {
-                        toProp.SetValue(
-                            objTo,
-                            fromProp.GetValue(objFrom, null),
+                        if (mappingOptions?.MaskingIncluded == true &&
+                            mappingOptions.Masking != null && mappingOptions.Masking.TryGetValue(toProp.Name, out var maskPattern))
+                        {
+                            string fromProp_str = fromProp.GetValue(obj_from, null)?.ToString() ?? throw new Exception($"The pattern value of property {fromProp.Name} is wrong");
+                            string fromProp_str_masked = MaskingHelper.ApplyMask(fromProp_str!, maskPattern);
+                            toProp.SetValue(
+                            obj_to,
+                            fromProp_str_masked, null);
+                        }
+                        else
+                        {
+                            toProp.SetValue(
+                            obj_to,
+                            fromProp.GetValue(obj_from, null),
                             null);
+                        }
+
                     }
                 }
                 #endregion
 
-                return objTo;
+                return obj_to;
 
             }
             catch (InvalidOperationException op_exc)
@@ -223,23 +225,23 @@ namespace ELMapper.NET.BusinessLogic
 
         }
 
-        public async Task<T_Destination> MapObjectAsync<T_Source, T_Destination>(T_Source objFrom, T_Destination? objTo = null
+        public async Task<T_Destination> MapObjectAsync<T_Source, T_Destination>(T_Source obj_from, T_Destination? obj_to = null
              , MappingOptions? mappingOptions = null)
             where T_Source : class
             where T_Destination : class, new()
         {
             try
             {
-                if (objTo is null)
+                if (obj_to is null)
                 {
-                    objTo = new T_Destination();
+                    obj_to = new T_Destination();
                 }
 
                 PropertyInfo[] arr_props_obj_From = typeof(T_Source).GetProperties();
                 PropertyInfo[] arr_props_obj_To = typeof(T_Destination).GetProperties();
 
 
-                #region query for filter (default and ignore)
+                #region query for filter, masking (default and ignore)
 
 
                 var _query = BuildMappingQuery(arr_props_obj_From, arr_props_obj_To, mappingOptions);
@@ -249,15 +251,28 @@ namespace ELMapper.NET.BusinessLogic
                 {
                     if (fromProp.CanRead && toProp.CanWrite)
                     {
-                        toProp.SetValue(
-                            objTo,
-                            fromProp.GetValue(objFrom, null),
+                        if (mappingOptions?.MaskingIncluded == true &&
+                            mappingOptions.Masking != null && mappingOptions.Masking.TryGetValue(toProp.Name, out var maskPattern))
+                        {
+                            string fromProp_str = fromProp.GetValue(obj_from, null)?.ToString() ?? throw new Exception($"The pattern value of property {fromProp.Name} is wrong");
+                            string fromProp_str_masked = MaskingHelper.ApplyMask(fromProp_str!, maskPattern);
+                            toProp.SetValue(
+                            obj_to,
+                            fromProp_str_masked, null);
+                        }
+                        else
+                        {
+                            toProp.SetValue(
+                            obj_to,
+                            fromProp.GetValue(obj_from, null),
                             null);
+                        }
+
                     }
                 }
                 #endregion
 
-                return await Task.FromResult(objTo);
+                return await Task.FromResult(obj_to);
 
             }
             catch (InvalidOperationException op_exc)
