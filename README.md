@@ -1,8 +1,6 @@
 # 📘 ELMapper.NET
 
-<p align="center">
-  <img src="./image/elmappernet-9.0.1-banner.jpg" alt="ELMapper.NET 9.0.1" />
-</p>
+![ELMapper.NET](image/elmappernet-9.0.2-banner.jpg)
 
 **Lightweight .NET object mapper for object-to-object and collection mapping.**
 
