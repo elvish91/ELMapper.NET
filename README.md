@@ -1,5 +1,11 @@
 # 📘 ELMapper.NET
 
+<p align="center">
+  <img src="./image/elmappernet-9.0.1-banner.jpg" alt="ELMapper.NET 9.0.1" />
+</p>
+
+**Lightweight .NET object mapper for object-to-object and collection mapping.**
+
 **Lightweight .NET object mapper for object-to-object and collection mapping.**
 
 ELMapper.NET provides predictable and explicit mapping between source and destination models with configurable mapping behavior.
@@ -199,7 +205,7 @@ return await _eLMapperNET.MapObjectAsync<BankEmployee, EmployeesDto>(
 
 Sensitive properties can be protected by applying `Masking` rules during object and collection mapping.
 
-#### Object Mapping Example
+#### Object Mapping Examples
 
 Example: protecting IBAN information during account mapping.
 
@@ -218,25 +224,33 @@ var primaryAccount = await _eLMapperNET
             }
         });
 ```
+- Masked output example
 
-#### Object Mapping Example
-
-Example: protecting IBAN information during account mapping.
-
+```text
+IBAN
+BA39************1234
+```
+Example: protecting CardNumber information during account mapping.
 ```csharp
-var primaryAccount = await _eLMapperNET
-    .MapObjectAsync<AccountCardSummaryQueryModel, PrimaryAccountDto>(
-        primaryAccountData!,
+var debitCard = await _eLMapperNET
+    .MapObjectAsync<AccountCardSummaryQueryModel, InternalPrimaryDebitCardDto>(
+        debit_card!,
         mappingOptions: new MappingOptions
         {
             Masking = new Dictionary<string, string>
             {
                 {
-                    nameof(PrimaryAccountDto.IBAN),
-                    Mask.KeepFirstLast(4, 4)
+                    nameof(InternalPrimaryDebitCardDto.CardNumber),
+                    Mask.KeepFirst(5)
                 }
             }
         });
+```
+- Masked output example
+
+```text
+Card Number
+53998***********
 ```
 
 #### Collection Mapping Example
@@ -261,6 +275,25 @@ return await _eLMapperNET
                 }
             }
         });
+```
+
+* Masked output example
+
+```json
+[
+  {
+    "DebtorIBAN": "BA39************4821",
+    "CreditorIBAN": "DE89************9165"
+  },
+  {
+    "DebtorIBAN": "FR14************1378",
+    "CreditorIBAN": "BA39************6542"
+  },
+  {
+    "DebtorIBAN": "BA39************8204",
+    "CreditorIBAN": "IT60************4419"
+  }
+]
 ```
 
 ---
@@ -289,9 +322,9 @@ return await _eLMapperNET
 
 ## 🔁 Backward Compatibility
 
-ELMapper.NET 9.0.0 maintains compatibility with previous releases.
+**ELMapper.NET 9.x maintains compatibility with previous extension method-based usage.**
 
-### Supported previous versions:
+ Supported previous versions:
 
 - ELMapper.NET 8.0.2
 - ELMapper.NET 8.1.1
