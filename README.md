@@ -1,6 +1,6 @@
 # 📘 ELMapper.NET
 
-![ELMapper.NET](image/elmappernet-9.0.2-banner.jpg)
+![ELMapper.NET](https://raw.githubusercontent.com/elvish91/ELMapper.NET/main/image/elmappernet-9.0.3-banner.jpg)
 
 **Lightweight .NET object mapper for object-to-object and collection mapping.**
 
